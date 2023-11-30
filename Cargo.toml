@@ -1,5 +1,5 @@
 [package]
-name = "rust-template"
+name = "example-windows-rs"
 version = "0.0.0-develop"
 authors = ["fg51 <zknsftk1msrk@gmail.com>"]
 edition = "2021"
@@ -13,3 +13,9 @@ clap = { version = "4", features = ["derive"] }
 thiserror = "1"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dependencies.windows]
+version = "0.52.0"
+features = [
+  "Media_Ocr",
+]
