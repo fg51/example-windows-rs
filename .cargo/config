@@ -1,0 +1,9 @@
+[target.i686-pc-windows-msvc]
+rustflags = ["-Ctarget-feature=+crt-static"]
+
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-Ctarget-feature=+crt-static"]
+
+[alias]
+win32 = "build --release --target i686-pc-windows-msvc"
+run32 = "run --release --target i686-pc-windows-msvc"
