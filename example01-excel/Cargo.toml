@@ -1,0 +1,9 @@
+[package]
+name = "example01-excel"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.93"
+thiserror = "2.0.3"
+windows = "0.58.0"
