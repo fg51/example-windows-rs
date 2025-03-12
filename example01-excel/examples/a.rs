@@ -1,23 +1,20 @@
-use std::ffi::OsString;
-use std::os::windows::ffi::OsStringExt;
-use std::ptr;
+use std::ffi::OsStr;
+use std::os::windows::ffi::OsStrExt;
+use std::ptr::null_mut;
 
-use windows::Win32::System::Com::IDispatch;
-use windows::{
-    core::{ComInterface, Result},
-    Win32::System::Com::CLSIDFromProgID,
-    Win32::System::Com::{
-        CoCreateInstance, CoInitializeEx, CoUninitialize, CLSCTX_LOCAL_SERVER, COINIT_MULTITHREADED,
-    },
-    Win32::System::Ole::{VARIANT, VT_BSTR, VT_ERROR},
-    Win32::UI::Shell::GetObjectW,
-};
+use anyhow::Result;
+
+use windows::core::PCWSTR;
 
 fn main() -> Result<()> {
     let file_path = "x.xlsx";
     open_and_print_excel(file_path);
 
     Ok(())
+}
+
+fn to_utf16(s: &str) -> Vec<u16> {
+    OsStr::new(s).encode_wide().chain(Some(0)).collect()
 }
 
 fn open_and_print_excel(file_path: &str) -> Result<()> {
